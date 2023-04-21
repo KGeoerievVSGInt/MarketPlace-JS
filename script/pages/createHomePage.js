@@ -1,9 +1,6 @@
-import { getPath } from "../utils/getPath.js";
 import { contentPage } from "./contentPage.js";
 
-export function createHomePage(href) {
-  const body = document.querySelector("body");
-
+export function createHomePage() {
   const wrapper = document.querySelector(".wrapper");
   if (wrapper) {
     wrapper.remove();
@@ -24,13 +21,12 @@ export function createHomePage(href) {
   anchor.textContent = "LOGIN";
   anchor.addEventListener("click", (e) => {
     e.preventDefault();
-    contentPage(e.target.href);
+    contentPage(e.target.pathname);
   });
   innerDiv.appendChild(img);
   innerDiv.appendChild(anchor);
 
   outerDiv.appendChild(innerDiv);
 
-  body.appendChild(outerDiv);
-  history.pushState({}, "", getPath(href));
+  return outerDiv;
 }

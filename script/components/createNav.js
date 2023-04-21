@@ -1,14 +1,22 @@
+import { contentLoadPage } from "../pages/contentLoadPage.js";
 import { contentPage } from "../pages/contentPage.js";
-
-export function createNav() {
+export function createNav(href) {
   const aside = document.createElement("aside");
   const nav = document.createElement("nav");
   nav.addEventListener("click", (e) => {
     e.preventDefault();
-    if (e.target.tagName == "A") {
-      contentPage(e.target.href);
-    } else if (e.target.tagName == "I") {
-      contentPage(e.target.parentElement.href);
+    let current;
+    if (e.target.tagName == "I") {
+      current = e.target.parentElement;
+    } else if (e.target.tagName == "A") {
+      current = e.target;
+    }
+    if (current) {
+      if (current.pathname == "/") {
+        contentPage(current.pathname);
+      } else {
+        contentLoadPage(current.pathname);
+      }
     }
   });
   const ul = document.createElement("ul");
@@ -17,10 +25,6 @@ export function createNav() {
   const aMarketplace = document.createElement("a");
   const iMarketplace = document.createElement("i");
   aMarketplace.href = "/marketplace";
-  if (aMarketplace.pathname == location.pathname) {
-    console.log("working");
-    aMarketplace.classList.add("active-link");
-  }
   iMarketplace.classList.add("fa-solid", "fa-store");
   aMarketplace.appendChild(iMarketplace);
   aMarketplace.appendChild(document.createTextNode(" Marketplace"));
@@ -32,7 +36,7 @@ export function createNav() {
   const aInventory = document.createElement("a");
   const iInventory = document.createElement("i");
   aInventory.href = "/inventory";
-  if (aInventory.pathname == location.pathname) {
+  if (aInventory.pathname == href) {
     aInventory.classList.add("active-link");
   }
   iInventory.classList.add("fa-regular", "fa-clipboard");
@@ -45,7 +49,7 @@ export function createNav() {
   const aPendingOrders = document.createElement("a");
   const iPendingOrders = document.createElement("i");
   aPendingOrders.href = "/pendingOrders";
-  if (aPendingOrders.pathname == location.pathname) {
+  if (aPendingOrders.pathname == href) {
     aPendingOrders.classList.add("active-link");
   }
   iPendingOrders.classList.add("fa-regular", "fa-clock");
@@ -58,7 +62,7 @@ export function createNav() {
   const aMyOrder = document.createElement("a");
   const iMyOrder = document.createElement("i");
   aMyOrder.href = "/myOrders";
-  if (aMyOrder.pathname == location.pathname) {
+  if (aMyOrder.pathname == href) {
     aMyOrder.classList.add("active-link");
   }
   iMyOrder.classList.add("fa-solid", "fa-bag-shopping");

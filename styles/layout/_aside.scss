@@ -14,6 +14,7 @@
     min-width: 250px;
     background-color: $white;
     border-radius: $radius-large;
+    animation: 500ms ease-out 0s 1 slideInFromLeft;
     nav {
       flex-grow: 1;
       width: 100%;
@@ -26,8 +27,18 @@
         @include flex-container($direction: column);
         li {
           cursor: pointer;
-          margin: 0 $medium + $small;
+          margin: $xs $medium + $small;
           box-sizing: border-box;
+          border-radius: $radius-medium;
+          transition: 750ms;
+          .active-link {
+            background-color: $default-red;
+            color: white;
+            border-radius: $radius-medium;
+            i {
+              color: $white;
+            }
+          }
           a {
             padding: $medium;
             display: block;
@@ -39,7 +50,6 @@
           }
           &:hover {
             background-color: $default-red;
-            border-radius: $radius-medium;
             box-shadow: $shadow-navigation;
             a {
               color: $white;
@@ -55,9 +65,4 @@
       }
     }
   }
-}
-.active-link{
-  background-color: $default-red;
-  color: white;
-  border-radius: $radius-medium;
 }
