@@ -221,7 +221,6 @@ body {
   border-radius: 20px;
   padding: 40px 20px;
   overflow: auto;
-  animation: 600ms ease-out 0s 1 slideInFromRight;
 }
 
 .cardItem-container {
@@ -270,8 +269,21 @@ body {
   align-items: flex-start;
 }
 
+.purchase-button {
+  cursor: pointer;
+  margin-left: 8px;
+  border: none;
+  display: inline-block;
+  padding: 6px 6px 2px 6px;
+  background-color: #ed1c25;
+  border-radius: 24px;
+  transition: 500ms;
+}
 .purchase-button img {
   height: auto;
+}
+.purchase-button:hover {
+  background-color: #f69296;
 }
 
 .dropdown {
@@ -296,28 +308,20 @@ body {
 .dropdown-child {
   display: none;
   position: absolute;
+  margin-top: 4px;
   background-color: #ffffff;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
   z-index: 4;
 }
 .dropdown-child .option {
-  font-size: 12px;
   padding: 4px;
+  font-size: 12px;
   cursor: pointer;
+  transition: 500ms;
 }
-
-.purchase-button {
-  cursor: pointer;
-  margin-left: 8px;
-  border: none;
-  display: inline-block;
-  padding: 6px 6px 2px 6px;
-  background-color: #ed1c25;
-  border-radius: 24px;
-}
-
-.purchase-button:hover {
-  background-color: #f69296;
+.dropdown-child .option:hover {
+  color: #ffffff;
+  background-color: #9a9a9a;
 }
 
 .confirmation-popup.market {
@@ -489,6 +493,13 @@ body {
   background-color: #2e7d32;
   color: #ffffff;
   gap: 16px;
+  transition: 500ms;
+}
+.add-new-button:hover {
+  background-color: #64c669;
+}
+.add-new-button:active {
+  background-color: #2e7d32;
 }
 .add-new-button-text {
   white-space: nowrap;
@@ -758,6 +769,7 @@ body {
   justify-content: flex-end;
 }
 .main-content-pending .pending-orders .action button {
+  cursor: pointer;
   background-color: #ed1c25;
   color: #ffffff;
   font-weight: 700;
@@ -765,6 +777,10 @@ body {
   padding: 0.625em 1.25em;
   border-radius: 0.325em;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+  transition: 500ms;
+}
+.main-content-pending .pending-orders .action button:hover {
+  background-color: #f69296;
 }
 
 .main-content-orders {
@@ -1200,6 +1216,9 @@ body {
   0% {
     transform: translateX(-100%);
   }
+  80% {
+    transform: translateX(20%);
+  }
   100% {
     transform: translateX(0);
   }
@@ -1208,15 +1227,10 @@ body {
   0% {
     transform: translateY(-100%);
   }
+  80% {
+    transform: translateY(20%);
+  }
   100% {
     transform: translateY(0);
-  }
-}
-@keyframes slideInFromRight {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(0);
   }
 }

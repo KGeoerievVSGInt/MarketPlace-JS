@@ -38,7 +38,13 @@
     background-color: $button-success;
     color: $white;
     gap: $medium;
-
+    transition: 500ms;
+    &:hover {
+      background-color: $button-success-hover;
+    }
+    &:active {
+      background-color: $button-success;
+    }
     &-text {
       white-space: nowrap;
       flex-grow: 1;
@@ -171,7 +177,7 @@
             }
           }
           border-bottom: $border-gray-pending;
-          &-child{
+          &-child {
             display: none;
             width: 100%;
             background-color: $white;
@@ -181,12 +187,11 @@
             z-index: 4;
             padding: $xs 0;
             box-shadow: $shadow-inventory-dropdown;
-            .category-option{
-
+            .category-option {
               cursor: pointer;
               margin: $xs;
               padding: $small;
-              &:hover{
+              &:hover {
                 background-color: $gray;
                 border-radius: $radius-small;
                 color: $white;

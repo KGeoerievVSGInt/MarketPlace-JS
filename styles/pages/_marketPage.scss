@@ -3,7 +3,6 @@
   @include main-common-primary;
   padding: $large + $small $medium + $xs;
   overflow: auto;
-  animation: 600ms ease-out 0s 1 slideInFromRight;
 }
 .cardItem-container {
   display: grid;
@@ -11,7 +10,6 @@
   align-content: start;
   justify-content: start;
   gap: $large;
-
 }
 .card-item {
   position: relative;
@@ -46,8 +44,19 @@
   }
 }
 .purchase-button {
+  cursor: pointer;
+  margin-left: $small;
+  border: none;
+  display: inline-block;
+  padding: $purchase-button-padding;
+  background-color: $default-red;
+  border-radius: $radius-xl;
+  transition: 500ms;
   img {
     height: auto;
+  }
+  &:hover {
+    background-color: lighten($default-red, 25%);
   }
 }
 .dropdown {
@@ -72,27 +81,21 @@
   &-child {
     display: none;
     position: absolute;
+    margin-top: $xs;
     background-color: $white;
     box-shadow: $shadow-table-item;
     z-index: 4;
     .option {
+      padding:$xs;
       font-size: $font-small;
-      padding: $xs;
       cursor: pointer;
+      transition: 500ms;
+      &:hover {
+        color: $white;
+        background-color: $gray;
+      }
     }
   }
-}
-.purchase-button {
-  cursor: pointer;
-  margin-left: $small;
-  border: none;
-  display: inline-block;
-  padding: $purchase-button-padding;
-  background-color: $default-red;
-  border-radius: $radius-xl;
-}
-.purchase-button:hover {
-  background-color: lighten($default-red, 25%);
 }
 .confirmation-popup {
   &.market {

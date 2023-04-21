@@ -19,10 +19,12 @@
   border: $border-red;
   border-radius: $radius-small;
   box-shadow: $shadow-popup-button;
+  transition: 500ms;
 }
 .popupButton:hover {
   color: $white;
   background-color: $default-red;
+  border: transparent;
 }
 .popupDivBefore {
   content: "";

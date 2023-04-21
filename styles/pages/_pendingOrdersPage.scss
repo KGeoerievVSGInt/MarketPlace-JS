@@ -37,6 +37,7 @@
     .action {
       @include flex-container($justify: flex-end);
       button {
+        cursor: pointer;
         background-color: $default-red;
         color: $white;
         font-weight: 700;
@@ -44,6 +45,10 @@
         padding: 0.625em 1.25em;
         border-radius: 0.325em;
         box-shadow: $shadow-main-logo;
+        transition: 500ms;
+        &:hover {
+          background-color: $default-red-hover;
+        }
       }
     }
   }

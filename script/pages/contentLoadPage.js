@@ -16,4 +16,5 @@ export function contentLoadPage(location) {
     main.remove();
   }
   content.appendChild(pageTypes[location]);
+  history.pushState({}, "", location);
 }

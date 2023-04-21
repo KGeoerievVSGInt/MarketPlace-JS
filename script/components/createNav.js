@@ -18,6 +18,14 @@ export function createNav(href) {
         contentLoadPage(current.pathname);
       }
     }
+    nav.querySelectorAll("a").forEach((link) => {
+      if (link.classList.contains("active-link")) {
+        link.classList.remove("active-link");
+      }
+      if (link.pathname == current.pathname) {
+        link.classList.add("active-link");
+      }
+    });
   });
   const ul = document.createElement("ul");
 
@@ -25,6 +33,9 @@ export function createNav(href) {
   const aMarketplace = document.createElement("a");
   const iMarketplace = document.createElement("i");
   aMarketplace.href = "/marketplace";
+  if (location.pathname == "/marketplace" || location.pathname == "/") {
+    aMarketplace.classList.add("active-link");
+  }
   iMarketplace.classList.add("fa-solid", "fa-store");
   aMarketplace.appendChild(iMarketplace);
   aMarketplace.appendChild(document.createTextNode(" Marketplace"));
