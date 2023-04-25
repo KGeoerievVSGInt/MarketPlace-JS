@@ -9,7 +9,7 @@ export function createCardItem(data) {
   img.src = data.image;
   img.alt = "hard coded";
   img.addEventListener("click", (e) => {
-    toggleMarketModal(e, data);
+    toggleMarketModal(e, data.id);
   });
   const itemOptions = document.createElement("div");
   itemOptions.classList.add("item-options");

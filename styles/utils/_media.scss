@@ -1,6 +1,6 @@
 @use "../" as *;
 @media only screen and (max-width: 1250px) {
-  .main-content {
+  .cardItem-container {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
@@ -34,12 +34,13 @@
   .hamburger-lines {
     display: block;
   }
-  .main-content {
+  .main-toggle{
+    display: none;
+  }
+  .cardItem-container {
     grid-template-columns: 1fr;
   }
-  main {
-    flex-direction: column;
-  }
+
   .card-item {
     width: 100%;
   }

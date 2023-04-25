@@ -1,14 +1,23 @@
 import { createMarketDetailsModal } from "../../components/createMarketDetailsModal.js";
+import { getSingleItem } from "../getSingleItem.js";
 
-export function toggleMarketModal(e, data) {
+export function toggleMarketModal(e, id) {
   e.preventDefault();
   const main = document.querySelector("main");
   let modal = document.querySelector(".modal");
-  main.style.overflow = main.style.overflow == "hidden" ? "auto" : "hidden";
   if (modal == null) {
-    modal = createMarketDetailsModal(data);
-    main.appendChild(modal);
+    getSingleItem(id).then((data) => {
+      modal = createMarketDetailsModal(data);
+      main.classList.add("main-hidden");
+      main.appendChild(modal);
+    });
   } else {
-    modal.remove();
+    main.classList.remove("main-hidden");
+    const backdrop = document.querySelector(".backdrop");
+    backdrop.classList.add("out");
+    document.querySelector(".modal-content").classList.add("modal-out");
+    backdrop.addEventListener("animationend", () => {
+      modal.remove();
+    });
   }
 }

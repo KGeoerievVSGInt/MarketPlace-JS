@@ -6,9 +6,16 @@ function toggleInventoryModal(type) {
     let modal = document.querySelector(".modal");
     if (modal == null) {
       modal = createInventoryDetailsModal(type, data);
+      main.classList.add("main-hidden");
       main.appendChild(modal);
     } else {
-      modal.remove();
+      main.classList.remove("main-hidden");
+      const backdrop = document.querySelector(".backdrop");
+      backdrop.classList.add("out");
+      document.querySelector(".item-management").classList.add("modal-out");
+      backdrop.addEventListener("animationend", () => {
+        modal.remove();
+      });
     }
   };
 }

@@ -2,9 +2,9 @@ import { createButton } from "./createButton.js";
 import { createInputDivs } from "./createInputDivs.js";
 import { toggleInventoryModalAdd } from "../utils/toggleFuncts/toggleInventoryModal.js";
 import { toggleInventoryModalDropdown } from "../utils/toggleFuncts/toggleInventoryModalDropdown.js";
+import { sendNewItem } from "../utils/sendNewItem.js";
 
 export function createInventoryDetailsModal(type, data) {
-  console.log(data);
   const modal = document.createElement("div");
   modal.classList.add("modal");
 
@@ -170,7 +170,12 @@ export function createInventoryDetailsModal(type, data) {
   itemDataButtonContainer.classList.add("item-data-button-container");
 
   const addBtn = createButton(["button", "button-success"], "Add");
-
+  addBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const newData = new FormData(itemDataFormLeft);
+    console.log(newData);
+    sendNewItem();
+  });
   itemDataButtonContainer.appendChild(addBtn);
 
   const closeBtn = document.createElement("button");
@@ -178,7 +183,10 @@ export function createInventoryDetailsModal(type, data) {
   const closeImg = document.createElement("img");
   closeImg.setAttribute("src", "../../img/marketPage/Vector_close.svg");
   closeImg.setAttribute("alt", "Close Edit Modal");
-  closeBtn.addEventListener("click", toggleInventoryModalAdd);
+  closeBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    toggleInventoryModalAdd();
+  });
 
   closeBtn.appendChild(closeImg);
 
