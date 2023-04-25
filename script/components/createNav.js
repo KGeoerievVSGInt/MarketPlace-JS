@@ -5,24 +5,31 @@ export function createNav(href) {
   const nav = document.createElement("nav");
   nav.addEventListener("click", (e) => {
     e.preventDefault();
-    let current;
-    if (e.target.tagName == "I") {
-      current = e.target.parentElement;
-    } else if (e.target.tagName == "A") {
-      current = e.target;
-    }
-    if (current) {
-      if (current.pathname == "/") {
-        contentPage(current.pathname);
+    // let current;
+    if (e.target.tagName == "A") {
+      if (e.target.pathname == "/") {
+        contentPage(e.target.pathname);
       } else {
-        contentLoadPage(current.pathname);
+        contentLoadPage(e.target.pathname);
       }
     }
+    // if (e.target.tagName == "I") {
+    //   current = e.target.parentElement;
+    // } else if (e.target.tagName == "A") {
+    //   current = e.target;
+    // }
+    // if (current) {
+    //   if (current.pathname == "/") {
+    //     contentPage(current.pathname);
+    //   } else {
+    //     contentLoadPage(current.pathname);
+    //   }
+    // }
     nav.querySelectorAll("a").forEach((link) => {
       if (link.classList.contains("active-link")) {
         link.classList.remove("active-link");
       }
-      if (link.pathname == current.pathname) {
+      if (link.pathname == e.target.pathname) {
         link.classList.add("active-link");
       }
     });

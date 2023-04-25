@@ -57,9 +57,12 @@ export function createMarketDetailsModal(data) {
   const itemDescription = document.createElement("div");
   itemDescription.classList.add("item-description");
   itemDescription.textContent = data.description;
-
+  const bubbles = document.createElement("img");
+  bubbles.setAttribute("src", "./img/marketPage/bubbles.png");
+  bubbles.setAttribute("alt", "decoration");
+  bubbles.classList.add("bubbles");
   modalContent.appendChild(itemDescription);
-
+  modalContent.appendChild(bubbles);
   modal.appendChild(modalContent);
 
   const backdrop = document.createElement("div");

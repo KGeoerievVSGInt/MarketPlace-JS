@@ -24,6 +24,10 @@ body {
   color: #000;
 }
 
+i {
+  pointer-events: none;
+}
+
 .container {
   background: url("/img/main/vsg_bg 2.jpg") 50% 50% no-repeat;
   background-size: cover;
@@ -141,13 +145,13 @@ body {
   height: 100vh;
   background-color: #000;
   transform: scaleY(0.01) scaleX(0);
-  animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  animation: unfoldIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
   opacity: 50%;
 }
 
 .out {
   transform: scale(1);
-  animation: unfoldOut 1s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  animation: unfoldOut 0.5s 0.35s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 .content {
@@ -253,12 +257,16 @@ body {
   display: flex;
   flex-direction: column;
 }
-.card-item img {
+.card-item a {
+  margin: auto;
+}
+.card-item a img {
   cursor: pointer;
   width: 100%;
+  max-width: 219px;
   height: 160px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
   border-radius: 5px 5px 0px 0px;
 }
 
@@ -410,7 +418,13 @@ body {
   background-color: #ffffff;
   border-radius: 20px;
   transform: scale(0);
-  animation: zoomIn 0.5s 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  animation: zoomIn 0.5s 0.35s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+.modal-content .bubbles {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50%;
 }
 .modal-content button {
   cursor: pointer;
@@ -422,9 +436,9 @@ body {
 .modal-content img {
   border-radius: 20px 20px 0 0;
   width: 100%;
-  height: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  max-height: 310px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .item-info {
@@ -459,6 +473,8 @@ body {
 
 .item-description {
   margin: 16px 32px 16px 16px;
+  max-height: 188px;
+  overflow: auto;
 }
 
 .modal-out {
@@ -618,7 +634,8 @@ body {
 }
 
 .item-management {
-  max-height: 700px;
+  box-sizing: border-box;
+  height: 700px;
   background-color: #ffffff;
   position: relative;
   z-index: 4;
@@ -626,7 +643,7 @@ body {
   padding: 48px;
   overflow: auto;
   transform: scale(0);
-  animation: zoomIn 0.5s 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  animation: zoomIn 0.5s 0.35s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 .item-management .modal-out {
   animation: zoomOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
@@ -679,7 +696,7 @@ body {
 }
 .item-management .item-data-form-left input {
   border-bottom: 1px solid #dadcdd;
-  margin-top: 62px;
+  margin-top: 45px;
 }
 .item-management .item-data-form-left textarea {
   border-bottom: 1px solid #dadcdd;
@@ -726,6 +743,12 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.item-management .item-data-form-right img {
+  width: 260px;
+  height: 150px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .item-management .item-data-form-right div {
   display: flex;
@@ -1177,6 +1200,9 @@ body {
   }
   .modal .modal-content img {
     height: 25%;
+  }
+  .modal .modal-content .bubbles {
+    bottom: -30px;
   }
   .modal .item-management {
     box-sizing: border-box;

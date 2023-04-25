@@ -116,7 +116,8 @@
   border-top: $border-gray-pending;
 }
 .item-management {
-  max-height: 700px;
+  box-sizing: border-box;
+  height: 700px;
   background-color: $white;
   position: relative;
   z-index: 4;
@@ -164,7 +165,7 @@
         @include flex-container($direction: column, $justify: center);
         input {
           border-bottom: $border-gray-pending;
-          margin-top: 62px;
+          margin-top: 45px;
         }
         textarea {
           border-bottom: $border-gray-pending;
@@ -212,6 +213,11 @@
           $justify: center,
           $align: center
         );
+        img{
+          width: 260px;
+          height: 150px;
+          object-fit: contain;
+        }
         div {
           @include flex-container($direction: column);
           button {

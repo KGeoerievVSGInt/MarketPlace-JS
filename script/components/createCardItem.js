@@ -4,13 +4,15 @@ import { toggleMarketModal } from "../utils/toggleFuncts/toggleMarketModal.js";
 export function createCardItem(data) {
   const cardItem = document.createElement("div");
   cardItem.classList.add("card-item");
-
+  const toggleAnchor = document.createElement("a");
+  toggleAnchor.setAttribute("href", "#");
+  toggleAnchor.addEventListener("click", (e) => {
+    toggleMarketModal(e, data.id);
+  });
   const img = document.createElement("img");
   img.src = data.image;
   img.alt = "hard coded";
-  img.addEventListener("click", (e) => {
-    toggleMarketModal(e, data.id);
-  });
+  toggleAnchor.appendChild(img);
   const itemOptions = document.createElement("div");
   itemOptions.classList.add("item-options");
 
@@ -81,12 +83,14 @@ export function createCardItem(data) {
 
   purchaseButton.addEventListener("click", (e) => {
     e.preventDefault();
-    toggleMarketPopup(e.currentTarget.parentElement.parentElement.parentElement, {
-      price: data.price,
-      qty: Number(buttonSpan.textContent),
-    });
+    toggleMarketPopup(
+      e.currentTarget.parentElement.parentElement.parentElement,
+      {
+        price: data.price,
+        qty: Number(buttonSpan.textContent),
+      }
+    );
   });
-
   dropdown.appendChild(dropdownButton);
   dropdown.appendChild(dropdownChild);
 
@@ -96,7 +100,7 @@ export function createCardItem(data) {
   itemOptions.appendChild(itemOptionsInfo);
   itemOptions.appendChild(itemOptionsPurchase);
 
-  cardItem.appendChild(img);
+  cardItem.appendChild(toggleAnchor);
   cardItem.appendChild(itemOptions);
   return cardItem;
 }
