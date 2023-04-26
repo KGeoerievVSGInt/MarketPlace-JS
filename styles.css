@@ -354,8 +354,8 @@ body {
   border-radius: 6px;
   padding: 1em;
   width: 275px;
-  left: 50%;
-  bottom: -35%;
+  left: 155px;
+  bottom: -90px;
   z-index: 4;
 }
 .confirmation-popup.market div {
@@ -389,15 +389,15 @@ body {
   border-width: 0 0.5em 0.75em 0.5em;
   border-color: transparent transparent #ffffff transparent;
   top: -10px;
-  left: 44%;
+  left: 150px;
 }
 
 .confirmation-popup.active {
-  left: -30%;
+  left: 45px;
 }
 
 .confirmation-popup.active::before {
-  left: 81%;
+  left: 260px;
 }
 
 .modal {
@@ -684,6 +684,14 @@ body {
   position: absolute;
   left: 0;
   bottom: 0;
+}
+.item-management .item-data-form-left div input[type=number]::-webkit-inner-spin-button,
+.item-management .item-data-form-left div input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.item-management .item-data-form-left div input[type=number] {
+  -moz-appearance: textfield;
 }
 .item-management .item-data-form-left div input:not(:-moz-placeholder-shown) ~ label, .item-management .item-data-form-left div textarea:not(:-moz-placeholder-shown) ~ label {
   display: none;
@@ -1299,6 +1307,10 @@ body {
 }
 .button-remove:hover {
   background-color: #f69296;
+}
+
+.button-hidden {
+  display: none;
 }
 
 @keyframes slideInFromLeft {

@@ -107,8 +107,8 @@
   &.market {
     @include popup-common;
     width: 275px;
-    left: 50%;
-    bottom: -35%;
+    left: 155px;
+    bottom: -90px;
     z-index: 4;
     div {
       @include popup-div;
@@ -125,13 +125,13 @@
   content: "";
   @include popup-div-before;
   top: -10px;
-  left: 44%;
+  left: 150px;
 }
 .confirmation-popup.active {
-  left: -30%;
+  left: 45px;
 }
 .confirmation-popup.active::before {
-  left: 81%;
+  left: 260px;
 }
 .modal {
   width: 100%;
@@ -149,7 +149,7 @@
   background-color: $white;
   border-radius: $radius-large;
   @include zoomIn;
-  .bubbles{
+  .bubbles {
     position: absolute;
     bottom: 0;
     right: 0;

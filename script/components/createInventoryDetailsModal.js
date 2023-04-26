@@ -6,6 +6,7 @@ import { contentLoadPage } from "../pages/contentLoadPage.js";
 import { post, put } from "../utils/fetcher.js";
 
 export function createInventoryDetailsModal(type, data) {
+  let imageFile;
   const modal = document.createElement("div");
   modal.classList.add("modal");
 
@@ -167,9 +168,19 @@ export function createInventoryDetailsModal(type, data) {
   const buttonsDiv = document.createElement("div");
 
   const uploadBtn = createButton(["button", "button-warning"], "Upload");
-
+  const uploadlink = document.createElement("input");
+  uploadlink.classList.add("button-hidden");
+  uploadlink.setAttribute("type", "file");
+  uploadlink.setAttribute("accept", "image/jpeg, image/png, image/jpg");
+  uploadlink.addEventListener("change", () => {
+    imageFile = uploadlink.files[0];
+    img.src = URL.createObjectURL(imageFile);
+  });
+  uploadBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    uploadlink.click();
+  });
   const removeBtn = createButton(["button", "button-remove"], "Remove");
-
   buttonsDiv.appendChild(uploadBtn);
   buttonsDiv.appendChild(removeBtn);
 
@@ -185,7 +196,11 @@ export function createInventoryDetailsModal(type, data) {
   const addBtn = createButton(["button", "button-success"], "Add");
   addBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    const newData = Object.fromEntries(new FormData(itemData));
+    const formData = new FormData(itemData);
+    if (imageFile) {
+      formData.append("image", uploadlink.files[0], "filename");
+    }
+    const newData = Object.fromEntries(formData);
     if (newData.code != "" || newData.name != "" || newData.qty != "") {
       if (type == "add") {
         post(newData);
