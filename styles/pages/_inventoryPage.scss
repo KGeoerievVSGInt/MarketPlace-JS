@@ -170,6 +170,7 @@
         textarea {
           border-bottom: $border-gray-pending;
           margin-top: 25px;
+          resize: none;
         }
         .category-dropdown {
           margin-top: 62px;
@@ -178,8 +179,17 @@
             cursor: pointer;
             background: transparent;
             @include flex-container($justify: space-between);
+            svg {
+              margin: auto 0;
+              &.arrow-down {
+                transform: rotate(180deg);
+              }
+            }
             span {
               color: $gray;
+              &.selected {
+                color: $black;
+              }
             }
           }
           border-bottom: $border-gray-pending;
@@ -194,6 +204,7 @@
             padding: $xs 0;
             box-shadow: $shadow-inventory-dropdown;
             .category-option {
+              list-style-type: none;
               cursor: pointer;
               margin: $xs;
               padding: $small;
@@ -201,7 +212,11 @@
                 background-color: $gray;
                 border-radius: $radius-small;
                 color: $white;
+                transition: 0.5s;
               }
+            }
+            &.open {
+              display: block;
             }
           }
         }
@@ -213,7 +228,7 @@
           $justify: center,
           $align: center
         );
-        img{
+        img {
           width: 260px;
           height: 150px;
           object-fit: contain;
@@ -242,6 +257,7 @@
     }
   }
 }
+
 .modal-out {
   @include zoomOut;
 }

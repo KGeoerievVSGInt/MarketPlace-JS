@@ -2,7 +2,8 @@ import { createButton } from "./createButton.js";
 import { createInputDivs } from "./createInputDivs.js";
 import { toggleInventoryModalAdd } from "../utils/toggleFuncts/toggleInventoryModal.js";
 import { toggleInventoryModalDropdown } from "../utils/toggleFuncts/toggleInventoryModalDropdown.js";
-import { sendNewItem } from "../utils/sendNewItem.js";
+import { contentLoadPage } from "../pages/contentLoadPage.js";
+import { post, put } from "../utils/fetcher.js";
 
 export function createInventoryDetailsModal(type, data) {
   const modal = document.createElement("div");
@@ -60,7 +61,10 @@ export function createInventoryDetailsModal(type, data) {
   const categoryButton = document.createElement("button");
 
   const dropdownSpan = document.createElement("span");
-  dropdownSpan.textContent = "Category *";
+  dropdownSpan.textContent = type == "edit" ? data.category : "Category *";
+  if (type == "edit") {
+    dropdownSpan.classList.add("selected");
+  }
 
   const droptdownSvg = document.createElementNS(
     "http://www.w3.org/2000/svg",
@@ -84,22 +88,22 @@ export function createInventoryDetailsModal(type, data) {
 
   categoryButton.addEventListener("click", toggleInventoryModalDropdown);
 
-  const dropdownChild = document.createElement("div");
+  const dropdownChild = document.createElement("ul");
   dropdownChild.classList.add("category-dropdown-child");
 
-  const option1 = document.createElement("div");
+  const option1 = document.createElement("li");
   option1.classList.add("category-option");
   option1.textContent = "Laptops";
 
-  const option2 = document.createElement("div");
+  const option2 = document.createElement("li");
   option2.classList.add("category-option");
   option2.textContent = "Furniture";
 
-  const option3 = document.createElement("div");
+  const option3 = document.createElement("li");
   option3.classList.add("category-option");
   option3.textContent = "Office Tools";
 
-  const option4 = document.createElement("div");
+  const option4 = document.createElement("li");
   option4.classList.add("category-option");
   option4.textContent = "Misc";
 
@@ -107,7 +111,16 @@ export function createInventoryDetailsModal(type, data) {
   dropdownChild.appendChild(option2);
   dropdownChild.appendChild(option3);
   dropdownChild.appendChild(option4);
-
+  dropdownChild.addEventListener("click", (e) => {
+    if (e.target.tagName == "LI") {
+      e.preventDefault();
+      dropdownSpan.textContent = e.target.textContent;
+      if (!dropdownChild.classList.contains("selected")) {
+        dropdownSpan.classList.add("selected");
+      }
+      toggleInventoryModalDropdown(e);
+    }
+  });
   categoryDropdown.appendChild(categoryButton);
   categoryDropdown.appendChild(dropdownChild);
 
@@ -153,7 +166,7 @@ export function createInventoryDetailsModal(type, data) {
 
   const buttonsDiv = document.createElement("div");
 
-  const uploadBtn = createButton(["button", "button-success"], "Upload");
+  const uploadBtn = createButton(["button", "button-warning"], "Upload");
 
   const removeBtn = createButton(["button", "button-remove"], "Remove");
 
@@ -172,9 +185,18 @@ export function createInventoryDetailsModal(type, data) {
   const addBtn = createButton(["button", "button-success"], "Add");
   addBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    const newData = new FormData(itemDataFormLeft);
-    console.log(newData);
-    sendNewItem();
+    const newData = Object.fromEntries(new FormData(itemData));
+    if (newData.code != "" || newData.name != "" || newData.qty != "") {
+      if (type == "add") {
+        post(newData);
+      } else {
+        put(newData, newData.code);
+      }
+      toggleInventoryModalAdd();
+      contentLoadPage("/inventory");
+    } else {
+      console.log("empty required fields");
+    }
   });
   itemDataButtonContainer.appendChild(addBtn);
 

@@ -88,6 +88,7 @@ export function createCardItem(data) {
       {
         price: data.price,
         qty: Number(buttonSpan.textContent),
+        id: data.id,
       }
     );
   });

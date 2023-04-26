@@ -4,6 +4,7 @@ export function createInputDivs(id, type, text, data) {
   input.setAttribute("id", id);
   input.setAttribute("type", type);
   input.setAttribute("placeholder", " ");
+  input.setAttribute("name", id);
   if (data !== null) {
     input.value = data;
   }

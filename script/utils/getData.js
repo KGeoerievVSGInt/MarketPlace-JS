@@ -1,11 +1,8 @@
-export async function getData(element, callback) {
-  try {
-    const res = await fetch("https://fakestoreapi.com/products");
-    if (!res.ok) {
-      throw new Error(res.statusText);
-    }
-    const data = await res.json();
+import { get } from "./fetcher.js";
 
+export async function getData(element, callback, id) {
+  const data = await get(undefined, id);
+  if (Array.isArray(data)) {
     data.forEach((product) => {
       const updated = {
         ...product,
@@ -17,7 +14,7 @@ export async function getData(element, callback) {
       };
       element.appendChild(callback(updated));
     });
-  } catch (e) {
-    console.log(e);
+  } else {
+    element.appendChild(callback(data));
   }
 }

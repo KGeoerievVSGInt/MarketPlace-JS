@@ -13,7 +13,7 @@ function togglePopup(type) {
   return function (parent, data) {
     let confirmationPopup = parent.querySelector(".confirmation-popup");
     if (confirmationPopup == null) {
-      confirmationPopup = popupTypes[type](data);
+      confirmationPopup = popupTypes[type](data, parent);
       parent.appendChild(confirmationPopup);
       if (confirmationPopup.getBoundingClientRect().right > window.innerWidth) {
         confirmationPopup.classList.toggle("active");

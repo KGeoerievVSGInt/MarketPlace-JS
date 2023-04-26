@@ -258,12 +258,11 @@ body {
   flex-direction: column;
 }
 .card-item a {
-  margin: auto;
+  width: 100%;
 }
 .card-item a img {
   cursor: pointer;
   width: 100%;
-  max-width: 219px;
   height: 160px;
   -o-object-fit: contain;
      object-fit: contain;
@@ -366,12 +365,14 @@ body {
   gap: 10px;
 }
 .confirmation-popup.market button {
+  cursor: pointer;
   padding: 0.25em 1em;
   background-color: #ffffff;
   color: #ed1c25;
   border: 1px solid #ed1c25;
   border-radius: 6px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+  transition: 0.5s;
 }
 .confirmation-popup.market button:hover {
   color: #ffffff;
@@ -603,12 +604,14 @@ body {
   margin-top: 8px;
 }
 .confirmation-popup button {
+  cursor: pointer;
   padding: 0.25em 1em;
   background-color: #ffffff;
   color: #ed1c25;
   border: 1px solid #ed1c25;
   border-radius: 6px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+  transition: 0.5s;
 }
 .confirmation-popup button:hover {
   color: #ffffff;
@@ -701,6 +704,7 @@ body {
 .item-management .item-data-form-left textarea {
   border-bottom: 1px solid #dadcdd;
   margin-top: 25px;
+  resize: none;
 }
 .item-management .item-data-form-left .category-dropdown {
   margin-top: 62px;
@@ -713,8 +717,17 @@ body {
   display: flex;
   justify-content: space-between;
 }
+.item-management .item-data-form-left .category-dropdown button svg {
+  margin: auto 0;
+}
+.item-management .item-data-form-left .category-dropdown button svg.arrow-down {
+  transform: rotate(180deg);
+}
 .item-management .item-data-form-left .category-dropdown button span {
   color: #9a9a9a;
+}
+.item-management .item-data-form-left .category-dropdown button span.selected {
+  color: #000;
 }
 .item-management .item-data-form-left .category-dropdown-child {
   display: none;
@@ -728,6 +741,7 @@ body {
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
 }
 .item-management .item-data-form-left .category-dropdown-child .category-option {
+  list-style-type: none;
   cursor: pointer;
   margin: 4px;
   padding: 8px;
@@ -736,6 +750,10 @@ body {
   background-color: #9a9a9a;
   border-radius: 6px;
   color: #ffffff;
+  transition: 0.5s;
+}
+.item-management .item-data-form-left .category-dropdown-child.open {
+  display: block;
 }
 .item-management .item-data-form-right {
   flex-grow: 1;
@@ -911,12 +929,14 @@ body {
   gap: 10px;
 }
 .main-content-orders .pending-orders .action .confirmation-popup button {
+  cursor: pointer;
   padding: 0.25em 1em;
   background-color: #ffffff;
   color: #ed1c25;
   border: 1px solid #ed1c25;
   border-radius: 6px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+  transition: 0.5s;
 }
 .main-content-orders .pending-orders .action .confirmation-popup button:hover {
   color: #ffffff;
@@ -1250,24 +1270,35 @@ body {
 }
 
 .button {
+  cursor: pointer;
   font-family: "Inter", sans-serif;
   font-size: 18px;
   font-weight: 700;
   padding: 8px;
   color: #ffffff;
   border-radius: 6px;
+  transition: 0.5s;
 }
 
 .button-success {
   background-color: #2e7d32;
 }
+.button-success:hover {
+  background-color: #64c669;
+}
 
 .button-warning {
   background-color: #ed6c02;
 }
+.button-warning:hover {
+  background-color: #feb071;
+}
 
 .button-remove {
   background-color: #ed1c25;
+}
+.button-remove:hover {
+  background-color: #f69296;
 }
 
 @keyframes slideInFromLeft {

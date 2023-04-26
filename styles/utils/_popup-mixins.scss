@@ -14,12 +14,14 @@
   gap: 10px;
 }
 @mixin popup-button {
+  cursor: pointer;
   padding: 0.25em 1em;
   background-color: $white;
   color: $default-red;
   border: $border-red;
   border-radius: $radius-small;
   box-shadow: $shadow-popup-button;
+  transition: 0.5s;
 }
 @mixin popup-button-hover {
   color: $white;

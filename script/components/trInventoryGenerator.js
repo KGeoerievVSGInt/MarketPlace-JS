@@ -41,6 +41,7 @@ export function trInventoryGenerator(data) {
     e.preventDefault();
     toggleInventoryPopup(e.currentTarget.parentElement, {
       message: "Are you sure you want to remove this item ?",
+      id: data.id,
     });
   });
   actions.appendChild(editButton);

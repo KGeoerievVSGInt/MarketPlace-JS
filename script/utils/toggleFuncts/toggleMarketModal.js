@@ -1,16 +1,12 @@
 import { createMarketDetailsModal } from "../../components/createMarketDetailsModal.js";
-import { getSingleItem } from "../getSingleItem.js";
+import { getData } from "../getData.js";
 
 export function toggleMarketModal(e, id) {
   e.preventDefault();
   const main = document.querySelector("main");
   let modal = document.querySelector(".modal");
   if (modal == null) {
-    getSingleItem(id).then((data) => {
-      modal = createMarketDetailsModal(data);
-      main.classList.add("main-hidden");
-      main.appendChild(modal);
-    });
+    getData(main, createMarketDetailsModal, id);
   } else {
     main.classList.remove("main-hidden");
     const backdrop = document.querySelector(".backdrop");

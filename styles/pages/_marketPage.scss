@@ -21,11 +21,10 @@
   display: flex;
   flex-direction: column;
   a {
-    margin: auto;
+    width: 100%;
     img {
       cursor: pointer;
       width: 100%;
-      max-width: 219px;
       height: 160px;
       object-fit: contain;
       border-radius: $radius-card-item;
