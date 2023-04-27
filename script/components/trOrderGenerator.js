@@ -1,16 +1,17 @@
 import { toggleMyOrdersPopup } from "../utils/toggleFuncts/togglePopup.js";
 
 export function trOrderGenerator(data) {
+  console.log(data);
   const tr = document.createElement("tr");
 
   const name = document.createElement("td");
-  name.textContent = data.title;
+  name.textContent = data.name;
 
   const qty = document.createElement("td");
-  qty.textContent = data.total;
+  qty.textContent = data.quantity;
 
   const price = document.createElement("td");
-  price.textContent = data.price;
+  price.textContent = data.orderPrice;
 
   const orderDate = document.createElement("td");
   orderDate.textContent = data.orderDate;
@@ -32,6 +33,7 @@ export function trOrderGenerator(data) {
       e.preventDefault();
       toggleMyOrdersPopup(e.currentTarget.parentElement, {
         message: "Are you sure you want to reject this order ?",
+        code: data.code,
       });
     });
     status.appendChild(p);

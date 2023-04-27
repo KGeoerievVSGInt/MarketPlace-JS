@@ -1,9 +1,14 @@
 function fetcher(method) {
-  return async function (data, id) {
+  return async function (data, id, url) {
     try {
-      const res = await fetch(`https://fakestoreapi.com/products/${id ?? ""}`, {
+      const res = await fetch(`https://localhost:7245${url}${id ?? ""}`, {
         method,
-        ...(data && { body: JSON.stringify(data) }),
+        ...(data && {
+          body: data instanceof FormData ? data : JSON.stringify(data),
+          ...(!data instanceof FormData && {
+            headers: { "Content-Type": "application/json" },
+          }),
+        }),
       });
       if (!res.ok) {
         throw await res.json();

@@ -4,17 +4,18 @@ import { createPendingOrders } from "./createPendingOrders.js";
 import { createMyOrder } from "./createMyOrder.js";
 
 const pageTypes = {
-  "/marketplace": createMarketPage(),
-  "/inventory": createInventoryTable(),
-  "/pendingOrders": createPendingOrders(),
-  "/myOrders": createMyOrder(),
+  "/marketplace": createMarketPage,
+  "/inventory": createInventoryTable,
+  "/pendingOrders": createPendingOrders,
+  "/myOrders": createMyOrder,
 };
 export function contentLoadPage(location) {
+  console.log(location, "working");
   const content = document.querySelector(".content");
   const main = document.querySelector("main");
   if (main != null) {
     main.remove();
   }
-  content.appendChild(pageTypes[location]);
+  content.appendChild(pageTypes[location]());
   history.pushState({}, "", location);
 }

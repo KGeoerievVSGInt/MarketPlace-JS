@@ -11,6 +11,7 @@ function togglePopup(type) {
     myOrder: createMyOrderPopup,
   };
   return function (parent, data) {
+    console.log(data);
     let confirmationPopup = parent.querySelector(".confirmation-popup");
     if (confirmationPopup == null) {
       confirmationPopup = popupTypes[type](data, parent);

@@ -1,5 +1,5 @@
 import { trInventoryGenerator } from "../components/trInventoryGenerator.js";
-import { getData } from "../utils/getData.js";
+import { getInventory } from "../utils/getData.js";
 import { toggleInventoryModalAdd } from "../utils/toggleFuncts/toggleInventoryModal.js";
 
 export function createInventoryTable() {
@@ -74,7 +74,7 @@ export function createInventoryTable() {
 
   const tbody = document.createElement("tbody");
 
-  getData(tbody, trInventoryGenerator);
+  getInventory(tbody, trInventoryGenerator);
   const pagination = document.createElement("div");
   pagination.classList.add("pagination-container");
   table.appendChild(thead);

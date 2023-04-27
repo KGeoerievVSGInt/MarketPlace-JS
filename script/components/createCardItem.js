@@ -7,10 +7,10 @@ export function createCardItem(data) {
   const toggleAnchor = document.createElement("a");
   toggleAnchor.setAttribute("href", "#");
   toggleAnchor.addEventListener("click", (e) => {
-    toggleMarketModal(e, data.id);
+    toggleMarketModal(e, data.code);
   });
   const img = document.createElement("img");
-  img.src = data.image;
+  img.src = data.imageURL;
   img.alt = "hard coded";
   toggleAnchor.appendChild(img);
   const itemOptions = document.createElement("div");
@@ -66,7 +66,7 @@ export function createCardItem(data) {
 
   const dropdownChild = document.createElement("div");
   dropdownChild.classList.add("dropdown-child");
-  for (let i = 1; i <= Number(data.forSale); i++) {
+  for (let i = 1; i <= Number(data.quantityForSale); i++) {
     const option = document.createElement("div");
     option.classList.add("option");
     option.textContent = i;
@@ -87,8 +87,8 @@ export function createCardItem(data) {
       e.currentTarget.parentElement.parentElement.parentElement,
       {
         price: data.price,
-        qty: Number(buttonSpan.textContent),
-        id: data.id,
+        quantity: Number(buttonSpan.textContent),
+        code: data.code,
       }
     );
   });

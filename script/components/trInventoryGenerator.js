@@ -5,19 +5,19 @@ export function trInventoryGenerator(data) {
   const tr = document.createElement("tr");
 
   const code = document.createElement("td");
-  code.textContent = data.id;
+  code.textContent = data.code;
 
   const name = document.createElement("td");
-  name.textContent = data.title;
+  name.textContent = data.name;
 
   const category = document.createElement("td");
   category.textContent = data.category;
 
   const forSale = document.createElement("td");
-  forSale.textContent = data.forSale;
+  forSale.textContent = data.quantityForSale;
 
   const total = document.createElement("td");
-  total.textContent = data.total;
+  total.textContent = data.quantity;
 
   const actions = document.createElement("td");
   actions.className = "actions";
@@ -41,7 +41,7 @@ export function trInventoryGenerator(data) {
     e.preventDefault();
     toggleInventoryPopup(e.currentTarget.parentElement, {
       message: "Are you sure you want to remove this item ?",
-      id: data.id,
+      code: data.code,
     });
   });
   actions.appendChild(editButton);

@@ -1,6 +1,7 @@
 import { toggleMarketModal } from "../utils/toggleFuncts/toggleMarketModal.js";
 
 export function createMarketDetailsModal(data) {
+  console.log(data);
   const modal = document.createElement("div");
   modal.classList.add("modal");
 
@@ -16,7 +17,7 @@ export function createMarketDetailsModal(data) {
   modalContent.appendChild(closeButton);
 
   const productImage = document.createElement("img");
-  productImage.setAttribute("src", data.image);
+  productImage.setAttribute("src", data.imageURL);
   productImage.setAttribute("alt", "hard coded");
   modalContent.appendChild(productImage);
 
@@ -48,7 +49,7 @@ export function createMarketDetailsModal(data) {
 
   const itemQuantity = document.createElement("div");
   itemQuantity.classList.add("item-info-right-quantity");
-  itemQuantity.textContent = `Qty: 5`;
+  itemQuantity.textContent = `Qty: ${data.quantityForSale}`;
   itemInfoRight.appendChild(itemQuantity);
 
   itemInfo.appendChild(itemInfoRight);

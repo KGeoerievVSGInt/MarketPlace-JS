@@ -1,5 +1,5 @@
 import { trPendingGenerator } from "../components/trPendingGenerator.js";
-import { getData } from "../utils/getData.js";
+import { getPending } from "../utils/getData.js";
 
 export function createPendingOrders() {
   const main = document.createElement("main");
@@ -32,7 +32,7 @@ export function createPendingOrders() {
   thead.appendChild(tr);
 
   const tbody = document.createElement("tbody");
-  getData(tbody, trPendingGenerator);
+  getPending(tbody, trPendingGenerator);
   table.appendChild(thead);
   table.appendChild(tbody);
   main.appendChild(table);

@@ -1,20 +1,18 @@
 import { get } from "./fetcher.js";
 
-export async function getData(element, callback, id) {
-  const data = await get(undefined, id);
-  if (Array.isArray(data)) {
-    data.forEach((product) => {
-      const updated = {
-        ...product,
-        total: 5,
-        forSale: 3,
-        orderedBy: "smechkov@vsgbg.com",
-        orderDate: "2023-03-13 16:30",
-        status: "Pending",
-      };
-      element.appendChild(callback(updated));
-    });
-  } else {
-    element.appendChild(callback(data));
-  }
+function getData(url) {
+  return async function (element, callback, id) {
+    const data = await get(undefined, id, url);
+    if (Array.isArray(data)) {
+      data.forEach((product) => {
+        element.appendChild(callback(product));
+      });
+    } else {
+      element.appendChild(callback(data));
+    }
+  };
 }
+export const getMarket = getData("/Marketplace");
+export const getInventory = getData("/Inventory");
+export const getPending = getData("/PendingOrders");
+export const getMyOrders = getData("/MyOrders");

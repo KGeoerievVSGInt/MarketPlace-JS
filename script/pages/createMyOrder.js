@@ -1,5 +1,5 @@
 import { trOrderGenerator } from "../components/trOrderGenerator.js";
-import { getData } from "../utils/getData.js";
+import { getMyOrders } from "../utils/getData.js";
 
 export function createMyOrder() {
   const main = document.createElement("main");
@@ -34,7 +34,7 @@ export function createMyOrder() {
   thead.appendChild(tr);
 
   const tbody = document.createElement("tbody");
-  getData(tbody, trOrderGenerator)
+  getMyOrders(tbody, trOrderGenerator, "/2");
   table.appendChild(thead);
   table.appendChild(tbody);
   main.appendChild(table);

@@ -30,14 +30,16 @@ export function createInventoryDetailsModal(type, data) {
     "code",
     "text",
     "Code *",
-    data ? data.id : null
+    data ? data.code : null,
+    "code"
   );
 
   const nameDiv = createInputDivs(
     "name",
     "text",
     "Name *",
-    data ? data.title : null
+    data ? data.name : null,
+    "name"
   );
 
   const descriptionDiv = document.createElement("div");
@@ -47,6 +49,7 @@ export function createInventoryDetailsModal(type, data) {
   textArea.setAttribute("placeholder", " ");
   textArea.setAttribute("cols", "40");
   textArea.setAttribute("rows", "6");
+  textArea.setAttribute("name", "description");
   textArea.value = data ? data.description : "";
 
   const descriptionLabel = document.createElement("label");
@@ -129,21 +132,24 @@ export function createInventoryDetailsModal(type, data) {
     "qty-for-sale",
     "number",
     "Qty For Sale",
-    data ? data.forSale : null
+    data ? data.quantityForSale : null,
+    "quantityForSale"
   );
 
   const priceDiv = createInputDivs(
     "sale-price",
     "number",
     "Sale Price",
-    data ? data.price : null
+    data ? data.price : null,
+    "price"
   );
 
   const qtyDiv = createInputDivs(
     "qty",
     "number",
     "Qty *",
-    data ? data.total : null
+    data ? data.quantity : null,
+    "quantity"
   );
 
   itemDataFormLeft.appendChild(modalHeader);
@@ -161,7 +167,7 @@ export function createInventoryDetailsModal(type, data) {
   const img = document.createElement("img");
   img.setAttribute(
     "src",
-    data ? data.image : "../img/inventory/no_image-placeholder.png"
+    data ? data.imageURL : "../img/inventory/no_image-placeholder.png"
   );
   img.setAttribute("alt", "New Item Image");
 
@@ -197,15 +203,21 @@ export function createInventoryDetailsModal(type, data) {
   addBtn.addEventListener("click", (e) => {
     e.preventDefault();
     const formData = new FormData(itemData);
+    const checkObj = Object.fromEntries(formData);
     if (imageFile) {
       formData.append("image", uploadlink.files[0], "filename");
     }
-    const newData = Object.fromEntries(formData);
-    if (newData.code != "" || newData.name != "" || newData.qty != "") {
+    if (
+      checkObj.code != "" &&
+      checkObj.name != "" &&
+      checkObj.qty != "" &&
+      dropdownSpan.textContent != "Category *"
+    ) {
+      formData.append("category", dropdownSpan.textContent);
       if (type == "add") {
-        post(newData);
+        post(formData, undefined, "/Inventory/AddItem");
       } else {
-        put(newData, newData.code);
+        put(formData, `/${checkObj.code}`, "/Inventory/Modify");
       }
       toggleInventoryModalAdd();
       contentLoadPage("/inventory");

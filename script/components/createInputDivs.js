@@ -1,10 +1,10 @@
-export function createInputDivs(id, type, text, data) {
+export function createInputDivs(id, type, text, data, name) {
   const div = document.createElement("div");
   const input = document.createElement("input");
   input.setAttribute("id", id);
   input.setAttribute("type", type);
   input.setAttribute("placeholder", " ");
-  input.setAttribute("name", id);
+  input.setAttribute("name", name);
   if (data !== null) {
     input.value = data;
   }
