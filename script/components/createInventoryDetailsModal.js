@@ -3,7 +3,9 @@ import { createInputDivs } from "./createInputDivs.js";
 import { toggleInventoryModalAdd } from "../utils/toggleFuncts/toggleInventoryModal.js";
 import { toggleInventoryModalDropdown } from "../utils/toggleFuncts/toggleInventoryModalDropdown.js";
 import { contentLoadPage } from "../pages/contentLoadPage.js";
-import { post, put } from "../utils/fetcher.js";
+// import { post, put } from "../utils/fetcher.js";
+import { postNewItem } from "../utils/toggleFuncts/postRequest.js";
+import { editItem } from "../utils/fetchers/putRequest.js";
 
 export function createInventoryDetailsModal(type, data) {
   let imageFile;
@@ -215,9 +217,11 @@ export function createInventoryDetailsModal(type, data) {
     ) {
       formData.append("category", dropdownSpan.textContent);
       if (type == "add") {
-        post(formData, undefined, "/Inventory/AddItem");
+        postNewItem(formData, false);
+        // post(formData, undefined, "/Inventory/AddItem");
       } else {
-        put(formData, `/${checkObj.code}`, "/Inventory/Modify");
+        // put(formData, `/${checkObj.code}`, "/Inventory/Modify");
+        editItem(formData, checkObj.code, false);
       }
       toggleInventoryModalAdd();
       contentLoadPage("/inventory");

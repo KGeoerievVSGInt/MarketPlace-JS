@@ -1,8 +1,8 @@
-import { get } from "./fetcher.js";
+import { getRequest } from "./toggleFuncts/getRequest.js";
 
 function getData(url) {
   return async function (element, callback, id) {
-    const data = await get(undefined, id, url);
+    const data = await getRequest(url, id);
     if (Array.isArray(data)) {
       data.forEach((product) => {
         element.appendChild(callback(product));

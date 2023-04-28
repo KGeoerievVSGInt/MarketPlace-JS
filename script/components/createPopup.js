@@ -1,4 +1,5 @@
-import { del, post } from "../utils/fetcher.js";
+import { deleteOrder } from "../utils/fetchers/deleteRequest.js";
+import { postOrder } from "../utils/toggleFuncts/postRequest.js";
 import { toggleInventoryPopup } from "../utils/toggleFuncts/togglePopup.js";
 
 function createPopup(secondClass) {
@@ -41,9 +42,9 @@ function createPopup(secondClass) {
           userId: 2, // User ID Hardcoded
           itemCode: data.code,
         };
-        post(newData, undefined, "/Marketplace/Buy");
+        postOrder(newData, true);
       } else {
-        del(undefined, data.code, "/DeleteItem/");
+        deleteOrder(data.code);
       }
       toggleInventoryPopup(parent);
     });
